@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+
+"""
+Event script for raspotify
+
+Requires environment variables for Spotify:
+    SPOTIPY_CLIENT_ID="YOUR CLIENT ID"
+    SPOTIPY_CLIENT_SECRET="YOUR CLIENT SECRET"
+
+"""
+import os
+import spotipy
+
+
+LOGFILE = os.path.expanduser("~/raspotify.event.log")
+
+
+def handle_event(logfile, device, event, track):
+    """
+    Handle an event from raspotify
+    """
+    logfile.write(f"Event: {event}\n")
+
+    if event != "playing":
+        return
+
+    # The 'track' is the track ID, let's look it up with the Spotify API
+    spotify = spotipy.Spotify(client_credentials_manager=spotipy.SpotifyClientCredentials())
+
+    track_uri = f"spotify:track:{track}"
+    track_info = spotify.track(track_uri)
+    logfile.write(str(track_info))
+
+
+if __name__ == "__main__":
+    device = os.environ.get("DEVICE_NAME")
+    event = os.environ.get("PLAYER_EVENT")
+    track = os.environ.get("TRACK_ID")
+    with open(LOGFILE, "a") as logfile:
+        try:
+            handle_event(logfile, device, event, track)
+        except Exception as exc:
+            logfile.write(f"{exc}\n")
+

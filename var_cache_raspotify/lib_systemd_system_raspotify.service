@@ -1,0 +1,24 @@
+[Unit]
+Description=Raspotify
+After=network.target
+
+[Service]
+User=raspotify
+Group=raspotify
+Restart=always
+RestartSec=10
+RuntimeMaxSec=1d
+PermissionsStartOnly=true
+ExecStartPre=/bin/mkdir -m 0755 -p /var/cache/raspotify ; /bin/chown raspotify:raspotify /var/cache/raspotify
+Environment="SPOTIPY_CLIENT_ID=xxx"
+Environment="SPOTIPY_CLIENT_SECRET=xxx"
+Environment="DEVICE_NAME=Living Room"
+Environment="BITRATE=320"
+Environment="CACHE_ARGS=--disable-audio-cache"
+Environment="VOLUME_ARGS=--enable-volume-normalisation --linear-volume --initial-volume=50"
+Environment="BACKEND_ARGS=--backend alsa"
+EnvironmentFile=-/etc/default/raspotify
+ExecStart=/usr/bin/librespot --name ${DEVICE_NAME} $BACKEND_ARGS --bitrate ${BITRATE} $CACHE_ARGS $VOLUME_ARGS $OPTIONS
+
+[Install]
+WantedBy=multi-user.target
