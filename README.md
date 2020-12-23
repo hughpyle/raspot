@@ -25,3 +25,7 @@ Playback is then routed via [CamillaDSP](https://github.com/HEnquist/camilladsp)
 * The `/var/cache/raspotify` directory has the `camilladsp` executable and [configuration file](https://github.com/hughpyle/raspot/blob/master/var_cache_raspotify/dsp.conf). The DSP config in this case includes various hand-crafted artisanal IIR (biquad) filter settings to make the loudspeakers sound the way I want them to.
 
 * The `/var/cache/raspotify/event` [script](https://github.com/hughpyle/raspot/blob/master/var_cache_raspotify/event) is work-in-progress...
+
+--
+
+![Bose 901 and Wadia 151](pix/bose901-wadia.jpg "Bose 901 and Wadia 151")
