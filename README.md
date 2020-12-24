@@ -16,7 +16,7 @@ The source is a Raspberry Pi.
 For now, the only music source is Spotify.  Using [raspotify](https://github.com/dtcooper/raspotify),
 the Raspberry Pi shows up as a Spotify Connect device.
 
-Playback is then routed via [CamillaDSP](https://github.com/HEnquist/camilladsp) to apply EQ for the loudspeakers.  The setup steps are really nicely documented [here](https://github.com/HEnquist/camilladsp-config)
+Playback is then routed via [CamillaDSP](https://github.com/HEnquist/camilladsp) to apply EQ for the loudspeakers.  The setup steps are really nicely documented [here](https://github.com/HEnquist/camilladsp-config).
 
 * The `/etc/default/raspotify` [configuration file](https://github.com/hughpyle/raspot/blob/master/var_cache_raspotify/etc_default_raspotify) sets up 'raspotify' to play to the 'loopback' ALSA device, and adds an event handler (for notification when the track changes -- later).
 
@@ -29,3 +29,5 @@ Playback is then routed via [CamillaDSP](https://github.com/HEnquist/camilladsp)
 --
 
 ![Bose 901 and Wadia 151](pix/bose901-wadia.jpg "Bose 901 and Wadia 151")
+(Wadia DAC/amp is the upper box, and Raspberry Pi is in the lower one)
+
