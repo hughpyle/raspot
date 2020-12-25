@@ -7,12 +7,37 @@ Requires environment variables for Spotify:
     SPOTIPY_CLIENT_ID="YOUR CLIENT ID"
     SPOTIPY_CLIENT_SECRET="YOUR CLIENT SECRET"
 
+Requires notecard, and permissions to i2c
+
 """
 import os
 import spotipy
+import notecard
+from periphery import I2C
 
 
 LOGFILE = os.path.expanduser("~/raspotify.event.log")
+
+
+def write_notecard(logfile, payload: dict):
+    """
+    Write the payload to the notecard, and sync
+    """
+    port = I2C("/dev/i2c-1")
+
+    try:
+        card = notecard.OpenI2C(port, 0, 0)
+
+        req = {
+            "req": "note.add",
+            "body": payload,
+            "sync": True
+        }
+        rsp = card.Transaction(req)
+        logfile.write(f"{rsp}\n")
+
+    finally:
+        port.close()
 
 
 def handle_event(logfile, device, event, track):
@@ -29,7 +54,10 @@ def handle_event(logfile, device, event, track):
 
     track_uri = f"spotify:track:{track}"
     track_info = spotify.track(track_uri)
-    logfile.write(str(track_info))
+    logfile.write(f"{track_info.get('name')}\n")
+
+    # Send the whole track_info to the notecard
+    write_notecard(logfile, track_info)
 
 
 if __name__ == "__main__":
@@ -41,4 +69,3 @@ if __name__ == "__main__":
             handle_event(logfile, device, event, track)
         except Exception as exc:
             logfile.write(f"{exc}\n")
-
