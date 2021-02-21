@@ -13,10 +13,15 @@ The source is a Raspberry Pi.
 
 ## Software
 
-For now, the only music source is Spotify.  Using [raspotify](https://github.com/dtcooper/raspotify),
-the Raspberry Pi shows up as a Spotify Connect device.
+The stereo is configured for Spotify, Bluetooth and Airplay.  (Bluetooth isn't good for video, but Airplay is;
+we can watch movie on a laptop and have sound on the stereo, with quite good lip-sync).
+For now, the only music source is Spotify.  
 
-Playback is then routed via [CamillaDSP](https://github.com/HEnquist/camilladsp) to apply EQ for the loudspeakers.  The setup steps are really nicely documented [here](https://github.com/HEnquist/camilladsp-config).
+* Using [raspotify](https://github.com/dtcooper/raspotify), the Raspberry Pi shows up as a Spotify Connect device.
+* Using [bluez-alsa](https://github.com/Arkq/bluez-alsa), it can be a Bluetooth speaker.
+* Using [shairport-sync](https://github.com/mikebrady/shairport-sync), it's an Airplay audio device.  This is handy for movies as well as music; we can watch video on a laptop and have sound from the stereo, with quite good lip-sync.
+
+Playback from these sources is routed via [CamillaDSP](https://github.com/HEnquist/camilladsp) to apply EQ for the loudspeakers.  The setup steps are really nicely documented [here](https://github.com/HEnquist/camilladsp-config).
 
 * The `/etc/default/raspotify` [configuration file](https://github.com/hughpyle/raspot/blob/master/var_cache_raspotify/etc_default_raspotify) sets up 'raspotify' to play to the 'loopback' ALSA device, and adds an event handler (for notification when the track changes -- later).
 
@@ -24,7 +29,9 @@ Playback is then routed via [CamillaDSP](https://github.com/HEnquist/camilladsp)
 
 * The `/var/cache/raspotify` directory has the `camilladsp` executable and [configuration file](https://github.com/hughpyle/raspot/blob/master/var_cache_raspotify/dsp.conf). The DSP config in this case includes various hand-crafted artisanal IIR (biquad) filter settings to make the loudspeakers sound the way I want them to.
 
-* The `/var/cache/raspotify/event` [script](https://github.com/hughpyle/raspot/blob/master/var_cache_raspotify/event) is work-in-progress...
+* The `/var/cache/raspotify/event` [script](https://github.com/hughpyle/raspot/blob/master/var_cache_raspotify/event) is work-in-progress... experiments for triggering logs and actions.
+
+* The `/usr/local/etc` directory has the [shairport-sync.conf configuration](https://github.com/hughpyle/raspot/blob/master/usr_local_etc/shairport-sync.conf) to send Airplay output to the loopback device where it's processed by camilladsp.
 
 --
 
