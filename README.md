@@ -13,9 +13,7 @@ The source is a Raspberry Pi.
 
 ## Software
 
-The stereo is configured for Spotify, Bluetooth and Airplay.  (Bluetooth isn't good for video, but Airplay is;
-we can watch movie on a laptop and have sound on the stereo, with quite good lip-sync).
-For now, the only music source is Spotify.  
+The stereo is configured for Spotify, Bluetooth and Airplay.
 
 * Using [raspotify](https://github.com/dtcooper/raspotify), the Raspberry Pi shows up as a Spotify Connect device.
 * Using [bluez-alsa](https://github.com/Arkq/bluez-alsa), it can be a Bluetooth speaker.
