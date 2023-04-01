@@ -4,8 +4,11 @@ This repo contains the configuration files for the living-room stereo.
 
 ## Hardware
 
-Loudspeakers are early-70s [Bose 901 Series II](http://cabezal.com/pix/901-minidsp-ucd/owg_en_901_series2.pdf).  These need some quite dramatic EQ, which originally would
+I've used this setup with a few different loudspeakers:
+
+* Early-70s [Bose 901 Series II](http://cabezal.com/pix/901-minidsp-ucd/owg_en_901_series2.pdf).  These need some quite dramatic EQ, which originally would
 be done with the [Bose equalizer box](http://cabezal.com/pix/901-minidsp-ucd/Bose-901-III-equal.pdf), but I'm using DSP software instead.
+* Early-80s [Kef Reference 103.2](http://cabezal.com/pix/103.2/kef_off.jpg).  These are lovely, musical, British "large bookshelf" monitors.  They don't need a lot of EQ, but I want to be able to use the DSP as a tone control.
 
 Amplifier is a [Wadia 151](http://www.wadia.com/ContentsFiles/151_Tech_Sheet%20web.pdf), which is basically a very nice USB DAC power-amp.
 
